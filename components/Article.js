@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Justin Article',
+    date: 'Jan 1st 1998',
+    firstParagraph: 'Blah Blah Blah Blah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah Blah',
+    secondParagraph: 'Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh Duh ',
+    thirdParagraph:"Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo Boo"
   }
 ];
 
@@ -114,3 +121,44 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+function articleMaker(obj){
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const p1 = document.createElement('p'); 
+  const p2 = document.createElement('p'); 
+  const p3 = document.createElement('p'); 
+  const button = document.createElement('span');
+
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  button.classList.add('expandButton')
+
+  articleTitle.textContent = obj.title;
+  articleDate.textContent = obj.date;
+  p1.textContent = obj.firstParagraph;
+  p2.textContent = obj.secondParagraph;
+  p3.textContent = obj.thirdParagraph;
+  button.textContent = '+';
+
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(p1)
+  article.appendChild(p2)
+  article.appendChild(p3)
+  article.appendChild(button)
+
+  button.addEventListener('click', function(event){
+    article.classList.toggle('article-open')
+  })
+
+  return article;
+
+}
+
+data.forEach(function(item){
+  let newArticle = articleMaker(item);
+  document.querySelector('.articles').appendChild(newArticle);
+})
